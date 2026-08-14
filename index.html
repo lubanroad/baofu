@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>飽福餐飲 ・ 大樓訂餐</title>
+<!--
+  ===========================================================================
+  飽福餐飲 — 大樓訂餐「總入口」（單頁兩步驟）
+  第一步：選大樓　→　第二步：選品牌 → 進 iCHEF（在 iCHEF 選自取點/時間/品項）
+  ★ 兩品牌 iCHEF 連結每棟共用（大樓＝iCHEF 自取點，由客人在 iCHEF 內選）。
+  ★ 新增大樓：只改下方 <script id="CONFIG"> 的 BUILDINGS 陣列。
+  ===========================================================================
+-->
+<style>
+  :root{
+    --bg:#f6f4ef; --card:#fff; --ink:#222; --muted:#6b6b6b; --line:#e7e3da;
+    --zhi:#3f7d52; --zhi-d:#2f5e3e; --li:#b23b2e; --li-d:#8a2c22;
+    --line-green:#06c755; --gold:#9a6a00; --warn-bg:#fff6e0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:520px;margin:0 auto;padding:22px 16px 48px}
+  header{text-align:center;padding:12px 0 6px}
+  .brand{font-size:13px;letter-spacing:3px;color:var(--muted)}
+  h1{font-size:25px;margin:6px 0 4px}
+  .sub{font-size:14px;color:var(--muted)}
+  .brands{font-size:12px;color:var(--zhi-d);margin-top:8px}
+  .brands span{display:inline-block;background:#eef3ee;border-radius:999px;padding:2px 10px;margin:0 3px}
+
+  .step{font-size:12px;color:var(--muted);letter-spacing:1px;margin:20px 2px 8px;font-weight:700}
+  .search input{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:12px;
+    font-size:15px;background:#fff;outline:none}
+  .search input:focus{border-color:var(--zhi)}
+  .count{font-size:12px;color:var(--muted);margin:8px 2px}
+  .list{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+  a.bldg,button.bldg{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;width:100%;
+    box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .05s,border-color .15s;cursor:pointer;
+    font-family:inherit;text-align:left}
+  .bldg:active{transform:scale(.99)} .bldg:hover{border-color:var(--zhi)}
+  .ic{flex:0 0 46px;height:46px;border-radius:12px;background:#eef3ee;display:flex;
+    align-items:center;justify-content:center;font-size:22px}
+  .info{flex:1;min-width:0}
+  .bn{font-size:17px;font-weight:700}
+  .ba{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .go{flex:0 0 auto;color:var(--zhi);font-weight:700;font-size:15px}
+  .soon{opacity:.55;pointer-events:none} .soon .go{color:var(--gold);font-size:12px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0;
+    box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .chosen{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+  .chosen .ic{flex:0 0 40px;height:40px;font-size:20px}
+  .chosen .bn{font-size:19px}
+  .chosen .ba{font-size:12px}
+  .pickTip{background:var(--warn-bg);border:1px solid #f0e3bd;color:var(--gold);border-radius:12px;
+    padding:12px 14px;font-size:14px;margin:14px 0;font-weight:600}
+  .pickTip b{font-size:15px}
+  h2{font-size:16px;margin-bottom:4px}
+  .desc{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .btn{display:block;text-align:center;text-decoration:none;color:#fff;font-size:17px;font-weight:700;
+    padding:15px;border-radius:12px;transition:transform .05s}
+  .btn:active{transform:scale(.98)}
+  .btn-zhi{background:var(--zhi)} .btn-li{background:var(--li)}
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;background:#eef3ee;
+    color:var(--zhi-d);margin-left:6px;vertical-align:middle}
+  .tag-li{background:#f6e9e7;color:var(--li-d)}
+  .rules{list-style:none;counter-reset:r;margin-top:4px}
+  .rules li{counter-increment:r;position:relative;padding:8px 0 8px 32px;font-size:13.5px;border-bottom:1px dashed var(--line)}
+  .rules li:last-child{border-bottom:none}
+  .rules li::before{content:counter(r);position:absolute;left:0;top:8px;width:21px;height:21px;
+    background:var(--zhi);color:#fff;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .line-row{display:flex;gap:10px;margin-top:4px}
+  .line-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--line-green);
+    color:#fff;text-decoration:none;font-weight:700;padding:12px;border-radius:12px;font-size:14px}
+  .back{background:none;border:none;color:var(--zhi-d);font-size:14px;font-weight:700;cursor:pointer;
+    padding:6px 0;margin-bottom:4px;font-family:inherit}
+  .note{background:var(--warn-bg);border:1px solid #f0e3bd;color:var(--gold);border-radius:12px;
+    padding:12px 14px;font-size:13px;margin-top:16px}
+  footer{text-align:center;font-size:11px;color:#aaa;margin-top:26px;line-height:1.9}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">飽福餐飲 BAOFU</div>
+    <h1>大樓訂餐</h1>
+    <div class="sub" id="subline">請選擇您所在的大樓</div>
+    <div class="brands"><span>知己知米私廚餐盒</span><span>李鴻記餐盒公司</span></div>
+  </header>
+
+  <!-- ===== 第一步：選大樓 ===== -->
+  <section id="step1">
+    <div class="step">STEP 1 ・ 選擇大樓</div>
+    <div class="search"><input id="q" type="text" placeholder="🔍 搜尋大樓名稱或地址…" autocomplete="off"></div>
+    <div class="count" id="count"></div>
+    <div class="list" id="list"></div>
+    <div class="note">找不到您的大樓？代表尚未開放服務。歡迎透過品牌 LINE@ 或公司窗口洽詢企業供餐與設點合作。</div>
+  </section>
+
+  <!-- ===== 第二步：選品牌 → iCHEF ===== -->
+  <section id="step2" class="hidden">
+    <button class="back" id="backBtn">← 重新選擇大樓</button>
+    <div class="step">STEP 2 ・ 選擇品牌訂餐</div>
+
+    <div class="card">
+      <div class="chosen">
+        <div class="ic">🏢</div>
+        <div class="info"><div class="bn" id="cName"></div><div class="ba" id="cAddr"></div></div>
+      </div>
+      <div class="pickTip">⚠️ 進入 iCHEF 後，「自取點」請務必選擇 <b id="cPick"></b>，並選擇您要的送達時段。</div>
+    </div>
+
+    <div class="card">
+      <h2>知己知米私廚餐盒<span class="tag">健康餐盒</span></h2>
+      <p class="desc">均蠡熱量・企業供餐首選</p>
+      <a class="btn btn-zhi" id="btnZhi" href="#" target="_blank" rel="noopener">前往知己知米訂餐 →</a>
+    </div>
+
+    <div class="card">
+      <h2>李鴻記餐盒公司<span class="tag tag-li">傳統便當</span></h2>
+      <p class="desc">傳統好味・份量紮實</p>
+      <a class="btn btn-li" id="btnLi" href="#" target="_blank" rel="noopener">前往李鴻記訂餐 →</a>
+    </div>
+
+    <div class="card">
+      <h2>訂餐規則</h2>
+      <ol class="rules">
+        <li>進 iCHEF 後，<b>自取點請選您的大樓</b>，選錯將無法送達。</li>
+        <li><b>線上預先付款</b>（LINE Pay／信用卡），完成付款才算訂購成功。</li>
+        <li>可前一天先預訂，最晚至<b>當天 9:30 截止</b>。</li>
+        <li>退改請於截單前，透過該品牌 LINE@ 申請。</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>需要客服？</h2>
+      <p class="desc">請找「您下單的品牌」LINE@</p>
+      <div class="line-row">
+        <a class="line-btn" id="lineZhi" href="#" target="_blank" rel="noopener">💬 知己知米</a>
+        <a class="line-btn" id="lineLi" href="#" target="_blank" rel="noopener">💬 李鴻記</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>飽福餐飲 ・ 知己知米｜李鴻記<br>企業供餐 ・ ESG 循環餐盒</footer>
+</div>
+
+<!-- =========================================================================
+     CONFIG：只改這裡
+     ========================================================================= -->
+<script id="CONFIG">
+  // 兩品牌 iCHEF 線上點餐（每棟共用；大樓＝iCHEF 自取點，由客人在 iCHEF 內選）
+  const ICHEF = {
+    zhi: "https://shop.ichefpos.com/store/j3LVSING/ordering",   // 知己知米
+    li:  "https://shop.ichefpos.com/store/Fy0w69An/ordering"    // 李鴻記
+  };
+  // 兩品牌 LINE@
+  const LINEAT = {
+    zhi: "https://line.me/R/ti/p/@478bwqhr",   // 知己知米
+    li:  "https://line.me/R/ti/p/@040gvtjv"    // 李鴻記
+  };
+
+  const BUILDINGS = [
+    { name:"新光金融大樓", addr:"臺北市松山區東光里南京東路五段125號", pick:"新光金融大樓", code:"skfin",       status:"live" },
+    { name:"明志大樓", addr:"臺北市松山區民生東路四段54號大樓", pick:"明志大樓", code:"mingzhi", status:"soon" },
+    { name:"民生東路三段109號（名稱待確認）", addr:"臺北市松山區民生東路三段109號", pick:"（待設定）", code:"ms109", status:"soon" },
+    { name:"台北國際大樓", addr:"臺北市大安區敦化南路二段1號", pick:"台北國際大樓", code:"tpeintl", status:"soon" }
+  ];
+
+  const listEl=document.getElementById("list"), countEl=document.getElementById("count"), qEl=document.getElementById("q");
+  const step1=document.getElementById("step1"), step2=document.getElementById("step2");
+  function renderList(items){
+    listEl.innerHTML="";
+    if(!items.length){ listEl.innerHTML='<div class="count">找不到符合的大樓</div>'; countEl.textContent=""; return; }
+    const liveN=items.filter(b=>b.status==="live").length;
+    countEl.textContent="共 "+liveN+" 棋開放中";
+    items.forEach(b=>{
+      const live=b.status==="live";
+      const el=document.createElement(live?"button":"div");
+      el.className="bldg"+(live?"":" soon");
+      el.innerHTML='<div class="ic">🏢</div><div class="info"><div class="bn">'+b.name+
+        '</div><div class="ba">'+b.addr+'</div></div><div class="go">'+(live?"選擇 →#�"即將開放")+'</div>';
+      if(live) el.addEventListener("click",()=>choose(b));
+      listEl.appendChild(el);
+    });
+  }
+  function apply(){
+    const kw=qEl.value.trim().toLowerCase();
+    const items=BUILDINGS.filter(b=>!kw||b.name.toLowerCase().includes(kw)||b.addr.toLowerCase().includes(kw));
+    items.sort((x,y)=>(x.status==="live"?0:1)-(y.status==="live"?0:1));
+    renderList(items);
+  }
+  function withUtm(base,code){ return base+"?utm_source=entry&utm_medium=web&utm_campaign="+encodeURIComponent(code); }
+  function choose(b){
+    document.getElementById("cName").textContent=b.name;
+    document.getElementById("cAddr").textContent=b.addr;
+    document.getElementById("cPick").textContent="「"+b.pick+"」";
+    document.getElementById("btnZhi").href=withUtm(ICHEF.zhi,b.code);
+    document.getElementById("btnLi").href=withUtm(ICHEF.li,b.code);
+    document.getElementById("lineZhi").href=LINEAT.zhi;
+    document.getElementById("lineLi").href=LINEAT.li;
+    document.getElementById("subline").textContent=b.name;
+    step1.classList.add("hidden"); step2.classList.remove("hidden");
+    window.scrollTo(0,0);
+  }
+  document.getElementById("backBtn").addEventListener("click",()=>{
+    step2.classList.add("hidden"); step1.classList.remove("hidden");
+    document.getElementById("subline").textContent="請選擇您所在的大樓"; window.scrollTo(0,0);
+  });
+  qEl.addEventListener("input",apply);
+  apply();
+</script>
+</body>
+</html>
