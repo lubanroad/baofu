@@ -183,7 +183,7 @@
       const el=document.createElement(live?"button":"div");
       el.className="bldg"+(live?"":" soon");
       el.innerHTML='<div class="ic">🏢</div><div class="info"><div class="bn">'+b.name+
-        '</div><div class="ba">'+b.addr+'</div></div><div class="go">'+(live?"選擇 →#�"即將開放")+'</div>';
+        '</div><div class="ba">'+b.addr+'</div></div><div class="go">'+(live?"選擇 →":"即將開放")+'</div>';
       if(live) el.addEventListener("click",()=>choose(b));
       listEl.appendChild(el);
     });
