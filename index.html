@@ -111,7 +111,7 @@
         <div class="ic">🏢</div>
         <div class="info"><div class="bn" id="cName"></div><div class="ba" id="cAddr"></div></div>
       </div>
-      <div class="pickTip">⚠️ 進入 iCHEF 後，「自取點」請務必選擇 <b id="cPick"></b>，並選擇您要的送達時段。</div>
+      <div class="pickTip">⚠️ 一份就送・不用運費！進入 iCHEF 後「自取點」請選 <b id="cPick"></b>，送達時段選「11:00–12:00」，當日送達大廳外送桌，自取即可。</div>
     </div>
 
     <div class="card">
@@ -213,6 +213,9 @@
   });
   qEl.addEventListener("input",apply);
   apply();
+
+  var _b = new URLSearchParams(location.search).get("b");
+  if (_b) { var _m = BUILDINGS.filter(function(x){ return x.code===_b && x.status==="live"; })[0]; if (_m) choose(_m); }
 </script>
 </body>
 </html>
