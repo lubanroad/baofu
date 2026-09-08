@@ -81,6 +81,22 @@
   footer{text-align:center;font-size:11px;color:#aaa;margin-top:26px;line-height:1.9}
   .hidden{display:none}
 </style>
+<!-- GA4 + Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QQDB5YM3L0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QQDB5YM3L0');
+  gtag('config', 'AW-7321343734');
+</script>
+<!-- Meta Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2900293833665700');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2900293833665700&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 <div class="wrap">
@@ -216,6 +232,8 @@
 
   var _b = new URLSearchParams(location.search).get("b");
   if (_b) { var _m = BUILDINGS.filter(function(x){ return x.code===_b && x.status==="live"; })[0]; if (_m) choose(_m); }
+
+  ["btnZhi","btnLi"].forEach(function(id){ var el=document.getElementById(id); if(!el) return; el.addEventListener("click", function(){ var brand = id==="btnZhi" ? "zhi" : "li"; if(window.fbq) fbq("track","Lead",{content_name:brand}); if(window.gtag) gtag("event","start_order",{brand:brand}); }); });
 </script>
 </body>
 </html>
