@@ -120,6 +120,16 @@ h2{margin:0;font-family:var(--serif);font-size:20px;font-weight:700}
 .brand.li .eyebrow{color:#F1D9B8} .brand.li p{color:#EAD7BF}
 .brand.li .cta{background:var(--cream);color:#3E2711}
 
+.guide{margin:0 24px 28px;padding:20px;border-radius:16px;background:var(--surface-2);border:1px solid var(--line)}
+.guide h2{margin-bottom:16px}
+.guide ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+.guide li{display:flex;gap:14px;align-items:flex-start}
+.guide .n{width:28px;height:28px;border-radius:999px;background:var(--gold);color:#14110C;font-family:var(--latin);font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.guide li div{display:flex;flex-direction:column;gap:4px;padding-top:3px}
+.guide b{font-size:15px;line-height:1.5}
+.guide small{font-size:13px;line-height:1.6;color:var(--text-2)}
+.guide .pick{font-style:normal;color:var(--gold);padding:1px 8px;margin-left:2px;border-radius:6px;background:#2A2113;border:1px solid #5C4520;white-space:nowrap}
+
 .facts{margin:28px 24px 0;padding:18px 20px;border-radius:16px;background:var(--surface-2);border:1px solid var(--line);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .facts div{display:flex;flex-direction:column;gap:4px}
 .facts span{font-size:12px;color:var(--muted)}
@@ -163,6 +173,8 @@ footer{margin-top:auto;padding:40px 24px calc(32px + env(safe-area-inset-bottom)
   .brand img{width:104px;height:104px}
   .brand h3{font-size:26px}
   .brand .cta{margin:0 28px 28px}
+  .guide{margin:0 0 32px;padding:24px 28px}
+  .guide ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
   .facts{margin:24px 0 0;grid-template-columns:repeat(4,minmax(0,1fr));padding:22px 28px}
   footer{padding:36px 48px 40px}
   .lines{max-width:560px}
@@ -231,6 +243,15 @@ footer{margin-top:auto;padding:40px 24px calc(32px + env(safe-area-inset-bottom)
         <svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         <div><strong id="st-title"></strong><small id="st-sub"></small></div>
       </div>
+    </section>
+
+    <section class="guide" aria-label="訂餐步驟說明">
+      <h2>訂餐 3 步驟</h2>
+      <ol>
+        <li><span class="n">1</span><div><b>點下方品牌按鈕，選好餐點</b><small>會開啟 iChef 線上點餐頁</small></div></li>
+        <li><span class="n">2</span><div><b>「取餐地點」選 <em class="pick"></em></b><small>iChef 會再問一次取餐地點，請選你的大樓，選錯會送不到</small></div></li>
+        <li><span class="n">3</span><div><b>完成線上付款，訂單才成立</b><small>未付款的訂單不會出餐</small></div></li>
+      </ol>
     </section>
 
     <section class="brands">
@@ -413,6 +434,7 @@ function choose(code, userAction){
   store.set('lastBuilding', b.code);
   $('b-name').textContent = b.name;
   $('b-addr').textContent = b.addr;
+  document.querySelectorAll('.pick').forEach(el => { el.textContent = b.name; });
   $('cta-zhi').href = withUtm(ICHEF.zhi, b.code);
   $('cta-li').href  = withUtm(ICHEF.li,  b.code);
   updateCountdown();
