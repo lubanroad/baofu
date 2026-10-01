@@ -1,15 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="飽福餐飲大樓訂餐平台。連結知己知米與李鴻記兩大品牌，為企業員工提供便利的線上訂餐服務。">
-<meta name="keywords" content="企業訂餐,大樓訂餐,健康便當,傳統便當,知己知米,李鴻記,台北訂餐">
-<meta property="og:title" content="知己知米 × 李鴻記 訂餐平台">
-<meta property="og:description" content="企業供餐新選擇。選擇您的大樓，輕鬆訂餐。當日送達，一份就送。">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>知己知米 × 李鴻記 訂餐平台</title>
+<meta name="description" content="企業供餐新選擇。選擇您的大樓，輕鬆訂餐。當日送達，一份就送。">
+<meta name="keywords" content="企業訂餐,大樓訂餐,健康便當,傳統便當,知己知米,李鴻記,台北訂餐">
+<meta name="theme-color" content="#0E0D0B">
+<meta property="og:title" content="知己知米 × 李鴻記 訂餐平台">
+<meta property="og:description" content="每日 09:30 截單，11:30–12:00 送達大樓。一份就送。">
+<meta property="og:image" content="https://lubanroad.github.io/baofu/riceandme.jpg">
 
-<!-- Google Analytics 4 -->
+<!-- 追蹤碼（沿用舊版：GA4 / Google Ads / Meta Pixel） -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQDB5YM3L0"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -18,8 +20,6 @@
   gtag('config', 'G-QQDB5YM3L0');
   gtag('config', 'AW-7321343734');
 </script>
-
-<!-- Facebook Pixel -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '2900293833665700');
@@ -27,147 +27,355 @@
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2900293833665700&ev=PageView&noscript=1" /></noscript>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@400;500;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#f6f4ef;--card:#fff;--ink:#222;--muted:#6b6b6b;--line:#e7e3da;--zhi:#3f7d52;--li:#b23b2e;--line-green:#06c755;--gold:#9a6a00;--warn-bg:#fff6e0;}
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:"Microsoft JhengHei","PingFang TC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
-  .wrap{max-width:520px;margin:0 auto;padding:22px 16px 48px}
-  h1{font-size:25px;margin:6px 0}
-  .step{font-size:12px;color:var(--muted);margin:20px 2px 8px;font-weight:700}
-  .search input{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:12px;font-size:15px}
-  .list{display:flex;flex-direction:column;gap:12px;margin-top:6px}
-  button.bldg{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;width:100%;cursor:pointer;font-family:inherit}
-  .bldg:hover{border-color:var(--zhi)}
-  .ic{flex:0 0 46px;height:46px;border-radius:12px;background:#eef3ee;display:flex;align-items:center;justify-content:center;font-size:22px}
-  .bn{font-size:17px;font-weight:700}
-  .ba{font-size:12px;color:var(--muted)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
-  .btn{display:block;color:#fff;font-size:17px;font-weight:700;padding:15px;border-radius:12px;border:none;cursor:pointer;width:100%;text-align:center;text-decoration:none}
-  .btn-zhi{background:var(--zhi)}
-  .btn-li{background:var(--li)}
-  .line-btn{background:var(--line-green);color:#fff;padding:12px;border-radius:12px;text-decoration:none;display:block;text-align:center}
-  .countdown{font-size:13px;color:var(--li);margin-top:8px;font-weight:700}
-  .hidden{display:none}
+:root{
+  --bg:#0E0D0B; --surface:#17150F; --surface-2:#15130F; --line:#24211C; --line-2:#3A352D;
+  --text:#F3EEE6; --text-2:#B5AEA3; --muted:#8C857A; --faint:#6F695F;
+  --gold:#FFBF5F; --gold-soft:#FFD58F; --brown:#5E3D1E; --brown-line:#7A5530; --cream:#FFF6EA;
+  --serif:'Noto Serif TC',serif; --sans:'Noto Sans TC',system-ui,sans-serif; --latin:'Montserrat',sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block}
+.wrap{max-width:520px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+.eyebrow{font-family:var(--latin);font-size:11px;font-weight:600;letter-spacing:3px;color:var(--muted)}
+.ico{flex-shrink:0}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--line);min-height:64px}
+.logos{display:flex;align-items:center;gap:10px}
+.logos img{width:32px;height:32px;border-radius:8px;object-fit:cover}
+.logos span{font-family:var(--latin);font-size:11px;color:var(--muted)}
+.back{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 8px;margin-left:-8px;color:#D9D2C6;font-size:14px;background:none;border:0;font-family:inherit;cursor:pointer}
+
+/* hero */
+.hero{padding:48px 24px 36px;display:flex;flex-direction:column;gap:18px}
+.kicker{display:flex;align-items:center;gap:10px}
+.kicker i{width:24px;height:1px;background:var(--gold)}
+.kicker span{font-size:12px;font-weight:700;letter-spacing:3px;color:var(--gold)}
+h1{margin:0;font-family:var(--serif);font-weight:900;font-size:40px;line-height:1.25;letter-spacing:1px}
+.lead{margin:0;font-size:15px;line-height:1.7;color:var(--text-2)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.chip{padding:6px 12px;border:1px solid var(--line-2);border-radius:999px;font-size:13px;color:#D9D2C6}
+.chip.hot{border-color:#5C4520;color:var(--gold-soft)}
+
+/* steps */
+.steps{margin:0 24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.step{padding:12px 14px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.step b{font-family:var(--latin);font-size:11px;letter-spacing:2px;color:var(--muted)}
+.step span{font-size:14px;color:var(--muted)}
+.step.on{background:#1E1A14;border-color:var(--gold)}
+.step.on b{color:var(--gold)} .step.on span{color:var(--text);font-weight:700}
+
+/* list */
+.sec{padding:28px 24px 0;display:flex;flex-direction:column;gap:12px}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline}
+h2{margin:0;font-family:var(--serif);font-size:20px;font-weight:700}
+.count{font-size:13px;color:var(--muted)}
+.bld{display:flex;align-items:center;gap:16px;width:100%;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line);color:var(--text);text-align:left;font-family:inherit;cursor:pointer;transition:border-color .2s,transform .2s}
+.bld:hover,.bld:focus-visible{border-color:var(--gold);outline:none}
+.bld:active{transform:scale(.99)}
+.bld[disabled]{opacity:.5;cursor:not-allowed}
+.bld .no{font-family:var(--latin);font-size:13px;font-weight:600;color:var(--gold);width:22px}
+.bld .info{flex-grow:1;display:flex;flex-direction:column;gap:4px;min-width:0}
+.bld .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bld .name{font-size:17px;font-weight:700}
+.tag{padding:2px 8px;border-radius:6px;background:#26221B;font-size:11px;color:var(--text-2)}
+.bld .addr{font-size:13px;color:#9C958A}
+.bld .go{width:36px;height:36px;border-radius:999px;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hint{margin:4px 0 0;font-size:13px;line-height:1.7;color:var(--muted)}
+
+/* building view */
+.bhero{padding:36px 24px 28px;display:flex;flex-direction:column;gap:12px}
+.bhero .eyebrow{color:var(--gold);font-size:12px}
+.bhero h1{font-size:36px}
+.addr-line{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text-2)}
+.status{margin-top:8px;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px}
+.status div{display:flex;flex-direction:column;gap:2px}
+.status strong{font-size:15px}
+.status small{font-size:13px}
+.status.open{background:#221B0F;border:1px solid #5C4520}
+.status.open strong{color:var(--gold-soft)} .status.open small{color:var(--text-2)}
+.status.closed{background:#2A1A16;border:1px solid #5A2E25}
+.status.closed strong{color:#F7B3A5} .status.closed small{color:#C9A69D}
+
+.brands{padding:0 24px;display:flex;flex-direction:column;gap:16px}
+.brand{border-radius:20px;overflow:hidden}
+.brand .head{display:flex;gap:16px;align-items:center;padding:20px}
+.brand img{width:88px;height:88px;border-radius:16px;object-fit:cover;flex-shrink:0}
+.brand .meta{display:flex;flex-direction:column;gap:6px}
+.brand h3{margin:0;font-family:var(--serif);font-size:24px;font-weight:900;color:var(--cream)}
+.brand p{margin:0;font-size:13px;line-height:1.6}
+.brand .cta{display:flex;align-items:center;justify-content:space-between;margin:0 20px 20px;padding:0 20px;min-height:52px;border-radius:14px;font-size:16px;font-weight:700;transition:filter .2s}
+.brand .cta:hover{filter:brightness(1.06)}
+.brand.zhi{background:#000;border:1px solid #4A3A1E}
+.brand.zhi .eyebrow{color:var(--gold)} .brand.zhi p{color:var(--text-2)}
+.brand.zhi .cta{background:var(--gold);color:#14110C}
+.brand.li{background:var(--brown);border:1px solid var(--brown-line)}
+.brand.li img{border:1px solid var(--brown-line)}
+.brand.li .eyebrow{color:#F1D9B8} .brand.li p{color:#EAD7BF}
+.brand.li .cta{background:var(--cream);color:#3E2711}
+
+.facts{margin:28px 24px 0;padding:18px 20px;border-radius:16px;background:var(--surface-2);border:1px solid var(--line);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.facts div{display:flex;flex-direction:column;gap:4px}
+.facts span{font-size:12px;color:var(--muted)}
+.facts b{font-size:15px}
+
+/* footer */
+footer{margin-top:auto;padding:40px 24px calc(32px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--line)}
+.lines{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lines a{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:12px;font-size:14px;font-weight:700}
+.lines .zhi{background:var(--gold);color:#14110C}
+.lines .li{background:var(--brown);color:var(--cream)}
+.copy{font-size:12px;color:var(--faint)}
+
+[hidden]{display:none!important}
+@media (max-width:360px){h1{font-size:34px}.bhero h1{font-size:30px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header style="text-align:center">
-    <h1>知己知米 × 李鴻記 訂餐平台</h1>
-  </header>
 
-  <section id="step1">
-    <div class="step">STEP 1 ・ 選擇大樓</div>
-    <div class="search"><input id="q" type="text" placeholder="🔍 搜尋大樓…"></div>
-    <div class="list" id="list"></div>
-  </section>
+  <!-- ========== VIEW 1：選擇大樓 ========== -->
+  <main id="view-list">
+    <header class="top">
+      <div class="logos">
+        <img src="riceandme.jpg" alt="知己知米" width="32" height="32">
+        <span>×</span>
+        <img src="lihongji.jpg" alt="李鴻記" width="32" height="32">
+      </div>
+      <span class="eyebrow">OFFICE LUNCH</span>
+    </header>
 
-  <section id="step2" class="hidden">
-    <button id="backBtn" style="background:none;border:none;color:var(--zhi-d);cursor:pointer">← 返回</button>
-    <div class="card">
-      <div id="cName" style="font-weight:700"></div>
-      <div id="cAddr" style="font-size:12px;color:var(--muted);margin-top:8px"></div>
-      <div class="countdown" id="countdown"></div>
+    <section class="hero">
+      <div class="kicker"><i></i><span>知己知米私廚餐盒 × 李鴻記餐盒公司</span></div>
+      <h1>今天中午，<br>在哪棟大樓用餐？</h1>
+      <p class="lead">選擇您的大樓，輕鬆訂餐。<br>當日送達，一份就送。</p>
+      <div class="chips">
+        <span class="chip hot">09:30 截單</span>
+        <span class="chip hot">11:30–12:00 送達</span>
+        <span class="chip">一份就送</span>
+        <span class="chip">健康餐盒 × 傳統便當</span>
+      </div>
+    </section>
+
+    <nav class="steps" aria-label="訂餐步驟">
+      <div class="step on"><b>STEP 1</b><span>選擇大樓</span></div>
+      <div class="step"><b>STEP 2</b><span>選擇品牌訂餐</span></div>
+    </nav>
+
+    <section class="sec">
+      <div class="sec-h"><h2>服務大樓</h2><span class="count" id="count"></span></div>
+      <div id="list" style="display:flex;flex-direction:column;gap:12px"></div>
+      <p class="hint">沒看到你的大樓？歡迎透過 LINE@ 詢問企業供餐。</p>
+    </section>
+  </main>
+
+  <!-- ========== VIEW 2：大樓訂餐 ========== -->
+  <main id="view-building" hidden>
+    <header class="top">
+      <button class="back" id="back" type="button">
+        <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        換大樓
+      </button>
+      <span class="eyebrow">STEP 2 / 2</span>
+    </header>
+
+    <section class="bhero">
+      <span class="eyebrow">YOUR BUILDING</span>
+      <h1 id="b-name"></h1>
+      <span class="addr-line">
+        <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C857A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <span id="b-addr"></span>
+      </span>
+      <div class="status" id="status" role="status" aria-live="polite">
+        <svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div><strong id="st-title"></strong><small id="st-sub"></small></div>
+      </div>
+    </section>
+
+    <section class="brands">
+      <h2>選擇品牌</h2>
+      <article class="brand zhi">
+        <div class="head">
+          <img src="riceandme.jpg" alt="知己知米私廚 RICEANDME 標誌" width="88" height="88">
+          <div class="meta">
+            <span class="eyebrow">RICEANDME</span>
+            <h3>知己知米</h3>
+            <p>健康私廚餐盒・ESG 循環餐盒</p>
+          </div>
+        </div>
+        <a class="cta" id="cta-zhi" href="#" target="_blank" rel="noopener">
+          <span>訂知己知米</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+      <article class="brand li">
+        <div class="head">
+          <img src="lihongji.jpg" alt="李鴻記餐盒公司 標誌" width="88" height="88">
+          <div class="meta">
+            <span class="eyebrow">LI HONG GI</span>
+            <h3>李鴻記</h3>
+            <p>傳統便當・家常好味道</p>
+          </div>
+        </div>
+        <a class="cta" id="cta-li" href="#" target="_blank" rel="noopener">
+          <span>訂李鴻記</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+    </section>
+
+    <section class="facts">
+      <div><span>截單</span><b>當日 09:30</b></div>
+      <div><span>送達</span><b>當日 11:30–12:00</b></div>
+      <div><span>配送</span><b>當日送達</b></div>
+      <div><span>起訂</span><b>一份就送</b></div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="eyebrow">CONTACT</span>
+    <div class="lines">
+      <a class="zhi" id="line-zhi" href="#" target="_blank" rel="noopener">LINE@ 知己知米</a>
+      <a class="li" id="line-li" href="#" target="_blank" rel="noopener">LINE@ 李鴻記</a>
     </div>
-
-    <div class="card">
-      <h2>知己知米</h2>
-      <a class="btn btn-zhi" id="btnZhi" href="#" target="_blank" rel="noopener">訂餐 →</a>
-    </div>
-
-    <div class="card">
-      <h2>李鴻記</h2>
-      <a class="btn btn-li" id="btnLi" href="#" target="_blank" rel="noopener">訂餐 →</a>
-    </div>
-
-    <div class="card">
-      <a class="line-btn" id="lineZhi" href="#" target="_blank">LINE@ 知己知米</a>
-      <a class="line-btn" id="lineLi" href="#" target="_blank" style="margin-top:8px">LINE@ 李鴻記</a>
-    </div>
-  </section>
+    <span class="copy">© 飽福餐飲｜知己知米私廚餐盒・李鴻記餐盒公司</span>
+  </footer>
 </div>
 
 <script>
-  const BUILDINGS=[
-    {name:"新光金融大樓",addr:"臺北市松山區南京東路五段125號",pick:"新光金融大樓",code:"skfin",status:"live"},
-    {name:"明志大樓",addr:"臺北市松山區民生東路四段54號",pick:"明志大樓",code:"mingzhi",status:"live"},
-    {name:"聯邦企業大樓",addr:"臺北市松山區民生東路三段109號",pick:"聯邦企業大樓",code:"ms109",status:"live"},
-    {name:"南山敦南大樓",addr:"臺北市大安區敦化南路一段2號",pick:"南山敦南大樓",code:"nanshan",status:"live"}
-  ];
-  const ICHEF={zhi:"https://shop.ichefpos.com/store/j3LVSING/ordering",li:"https://shop.ichefpos.com/store/Fy0w69An/ordering"};
-  const LINEAT={zhi:"https://line.me/R/ti/p/@478bwqhr",li:"https://line.me/R/ti/p/@040gvtjv"};
+/* ================= 設定區（之後新增大樓只改這裡） ================= */
+const CUTOFF = { h: 9, m: 30 };            // 截單：當日 09:30（台北時間）
+const DELIVERY = '11:30–12:00';            // 送達時段
 
-  function renderList(items){
-    const list=document.getElementById("list");
-    list.innerHTML="";
-    items.forEach(b=>{
-      const el=document.createElement("button");
-      el.className="bldg";
-      el.innerHTML='<div class="ic">🏢</div><div><div class="bn">'+b.name+'</div><div class="ba">'+b.addr+'</div></div>';
-      if(b.status==="live"){
-        el.addEventListener("click",()=>choose(b));
-      }
-      list.appendChild(el);
-    });
+// status: 'live' 可訂；其他值（如 'soon'）顯示「即將開通」且不可點
+const BUILDINGS = [
+  { name:'新光金融大樓', district:'松山區', addr:'臺北市松山區南京東路五段125號', code:'skfin',   status:'live' },
+  { name:'明志大樓',     district:'松山區', addr:'臺北市松山區民生東路四段54號',  code:'mingzhi', status:'live' },
+  { name:'聯邦企業大樓', district:'松山區', addr:'臺北市松山區民生東路三段109號', code:'ms109',   status:'live' },
+  { name:'南山敦南大樓', district:'大安區', addr:'臺北市大安區敦化南路一段2號',   code:'nanshan', status:'live' }
+];
+const ICHEF = {
+  zhi: 'https://shop.ichefpos.com/store/j3LVSING/ordering',   // 知己知米
+  li:  'https://shop.ichefpos.com/store/Fy0w69An/ordering'    // 李鴻記
+};
+const LINEAT = {
+  zhi: 'https://line.me/R/ti/p/@478bwqhr',
+  li:  'https://line.me/R/ti/p/@040gvtjv'
+};
+/* ================================================================= */
+
+const $ = id => document.getElementById(id);
+const track = (fn, ...a) => { try { if (typeof window[fn] === 'function') window[fn](...a); } catch (e) {} };
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} },
+  del(k){ try { localStorage.removeItem(k); } catch(e){} }
+};
+
+// 與舊版相同的 UTM：utm_source=baofu_entry、utm_campaign=大樓代碼
+function withUtm(url, code){
+  const u = new URL(url);
+  u.searchParams.set('utm_source', 'baofu_entry');
+  u.searchParams.set('utm_campaign', code);
+  return u.toString();
+}
+
+const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFBF5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function renderList(){
+  $('count').textContent = '共 ' + BUILDINGS.length + ' 棟';
+  $('list').innerHTML = BUILDINGS.map((b, i) => {
+    const live = b.status === 'live';
+    return '<button type="button" class="bld" data-code="' + esc(b.code) + '"' + (live ? '' : ' disabled') + '>' +
+      '<span class="no">' + String(i + 1).padStart(2, '0') + '</span>' +
+      '<span class="info"><span class="row"><span class="name">' + esc(b.name) + '</span>' +
+      '<span class="tag">' + (live ? esc(b.district) : '即將開通') + '</span></span>' +
+      '<span class="addr">' + esc(b.addr) + '</span></span>' +
+      '<span class="go">' + arrow + '</span></button>';
+  }).join('');
+  $('list').querySelectorAll('.bld:not([disabled])').forEach(el =>
+    el.addEventListener('click', () => choose(el.dataset.code, true)));
+}
+
+// 以台北時間判斷截單
+function taipeiNow(){
+  const p = new Intl.DateTimeFormat('en-GB', { timeZone:'Asia/Taipei', hour:'2-digit', minute:'2-digit', hour12:false })
+    .formatToParts(new Date());
+  return { h: +p.find(x => x.type === 'hour').value % 24, m: +p.find(x => x.type === 'minute').value };
+}
+function updateCountdown(){
+  const n = taipeiNow();
+  const remain = (CUTOFF.h * 60 + CUTOFF.m) - (n.h * 60 + n.m);
+  const st = $('status');
+  if (remain > 0) {
+    const hh = Math.floor(remain / 60), mm = remain % 60;
+    st.className = 'status open';
+    $('st-title').textContent = '今日接單中・09:30 截單';
+    $('st-sub').textContent = '距截單還有 ' + (hh ? hh + ' 小時 ' : '') + mm + ' 分｜' + DELIVERY + ' 送達大樓';
+  } else {
+    st.className = 'status closed';
+    $('st-title').textContent = '今日已截單';
+    $('st-sub').textContent = '每日 09:30 截單，可先預訂明日餐點';
   }
+}
 
-  function apply(){
-    const kw=document.getElementById("q").value.toLowerCase();
-    const items=BUILDINGS.filter(b=>!kw||b.name.toLowerCase().includes(kw)||b.addr.toLowerCase().includes(kw));
-    renderList(items);
+let current = null;
+function choose(code, userAction){
+  const b = BUILDINGS.find(x => x.code === code && x.status === 'live');
+  if (!b) return showList();
+  current = b;
+  store.set('lastBuilding', b.code);
+  $('b-name').textContent = b.name;
+  $('b-addr').textContent = b.addr;
+  $('cta-zhi').href = withUtm(ICHEF.zhi, b.code);
+  $('cta-li').href  = withUtm(ICHEF.li,  b.code);
+  updateCountdown();
+  $('view-list').hidden = true;
+  $('view-building').hidden = false;
+  document.title = b.name + '｜知己知米 × 李鴻記 訂餐';
+  const u = new URL(location.href); u.searchParams.set('b', b.code); history.replaceState(null, '', u);
+  if (userAction) {
+    track('gtag', 'event', 'building_selected', { building: b.name });
+    track('fbq', 'track', 'InitiateCheckout', { content_name: b.name });
   }
+  window.scrollTo(0, 0);
+}
+function showList(){
+  current = null;
+  store.del('lastBuilding');
+  $('view-building').hidden = true;
+  $('view-list').hidden = false;
+  document.title = '知己知米 × 李鴻記 訂餐平台';
+  const u = new URL(location.href); u.searchParams.delete('b'); history.replaceState(null, '', u);
+  window.scrollTo(0, 0);
+}
 
-  function withUtm(base,code){
-    const u=new URL(base);
-    u.searchParams.set('utm_source','baofu_entry');
-    u.searchParams.set('utm_campaign',code);
-    return u.toString();
-  }
+$('back').addEventListener('click', showList);
+$('cta-zhi').addEventListener('click', () => {
+  track('gtag', 'event', 'brand_clicked', { brand: '知己知米' });
+  track('fbq', 'track', 'ViewContent', { content_name: '知己知米' });
+});
+$('cta-li').addEventListener('click', () => {
+  track('gtag', 'event', 'brand_clicked', { brand: '李鴻記' });
+  track('fbq', 'track', 'ViewContent', { content_name: '李鴻記' });
+});
+$('line-zhi').href = LINEAT.zhi;
+$('line-li').href = LINEAT.li;
 
-  function updateCountdown(){
-    const cd=document.getElementById("countdown");
-    if(!cd)return;
-    const now=new Date();
-    const h=now.getHours(),m=now.getMinutes();
-    if(h<9||(h===9&&m<30)){
-      const remain=(9*60+30)-(h*60+m);
-      const hh=Math.floor(remain/60),mm=remain%60;
-      cd.textContent="⏰ 截單倒數："+hh+"h "+mm+"m";
-    }else{
-      cd.textContent="⏰ 已截單";
-    }
-  }
-
-  function choose(b){
-    document.getElementById("step1").classList.add("hidden");
-    document.getElementById("step2").classList.remove("hidden");
-    document.getElementById("cName").textContent=b.name;
-    document.getElementById("cAddr").textContent=b.addr;
-    document.getElementById("btnZhi").href=withUtm(ICHEF.zhi,b.code);
-    document.getElementById("btnLi").href=withUtm(ICHEF.li,b.code);
-    document.getElementById("lineZhi").href=LINEAT.zhi;
-    document.getElementById("lineLi").href=LINEAT.li;
-    localStorage.setItem("lastBuilding",JSON.stringify(b));
-    updateCountdown();
-    setInterval(updateCountdown,30000);
-    gtag('event','building_selected',{building:b.name});
-    fbq('track','InitiateCheckout',{content_name:b.name});
-  }
-
-  document.getElementById("backBtn").addEventListener("click",()=>{
-    document.getElementById("step2").classList.add("hidden");
-    document.getElementById("step1").classList.remove("hidden");
-  });
-
-  document.getElementById("q").addEventListener("input",apply);
-  
-  document.getElementById("btnZhi").addEventListener("click",()=>{gtag('event','brand_clicked',{brand:'知己知米'});fbq('track','ViewContent',{content_name:'知己知米'});});
-  document.getElementById("btnLi").addEventListener("click",()=>{gtag('event','brand_clicked',{brand:'李鴻記'});fbq('track','ViewContent',{content_name:'李鴻記'});});
-
-  const bp=new URLSearchParams(location.search).get("b");
-  if(bp){const found=BUILDINGS.find(x=>x.code===bp);if(found)choose(found);}else{const saved=localStorage.getItem("lastBuilding");if(saved){try{choose(JSON.parse(saved));}catch(e){}}}
-  
-  apply();
+renderList();
+// 進站：?b=代碼 優先（QR Code 用），其次記住上次選的大樓
+const bp = new URLSearchParams(location.search).get('b');
+const saved = bp || store.get('lastBuilding');
+if (saved) choose(saved, false);
+setInterval(() => { if (current) updateCountdown(); }, 30000);
 </script>
 </body>
 </html>
