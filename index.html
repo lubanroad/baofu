@@ -8,7 +8,7 @@
 <meta name="keywords" content="企業訂餐,大樓訂餐,健康便當,傳統便當,知己知米,李鴻記,台北訂餐">
 <meta name="theme-color" content="#0E0D0B">
 <meta property="og:title" content="知己知米 × 李鴻記 訂餐平台">
-<meta property="og:description" content="每日 09:30 截單，11:30–12:00 送達大樓。一份就送。">
+<meta property="og:description" content="每日 10:00 截單，11:30–12:00 送達大樓。一份就送。">
 <meta property="og:image" content="https://lubanroad.github.io/baofu/riceandme.jpg">
 
 <!-- 追蹤碼（沿用舊版：GA4 / Google Ads / Meta Pixel） -->
@@ -201,7 +201,7 @@ footer{margin-top:auto;padding:40px 24px calc(32px + env(safe-area-inset-bottom)
       <h1>今天中午，<br>在哪棟大樓用餐？</h1>
       <p class="lead">選擇您的大樓，輕鬆訂餐。<br>當日送達，一份就送。</p>
       <div class="chips">
-        <span class="chip hot">09:30 截單</span>
+        <span class="chip hot">10:00 截單</span>
         <span class="chip hot">11:30–12:00 送達</span>
         <span class="chip">週一至五供餐</span>
         <span class="chip">一份就送</span>
@@ -287,7 +287,7 @@ footer{margin-top:auto;padding:40px 24px calc(32px + env(safe-area-inset-bottom)
     </section>
 
     <section class="facts">
-      <div><span>截單</span><b>當日 09:30</b></div>
+      <div><span>截單</span><b>當日 10:00</b></div>
       <div><span>送達</span><b>當日 11:30–12:00</b></div>
       <div><span>供餐日</span><b>週一至週五</b></div>
       <div><span>起訂</span><b>一份就送</b></div>
@@ -306,7 +306,7 @@ footer{margin-top:auto;padding:40px 24px calc(32px + env(safe-area-inset-bottom)
 
 <script>
 /* ================= 設定區（之後新增大樓只改這裡） ================= */
-const CUTOFF = { h: 9, m: 30 };            // 截單：當日 09:30（台北時間）
+const CUTOFF = { h: 10, m: 0 };            // 截單：當日 10:00（台北時間）
 const DELIVERY = '11:30–12:00';            // 送達時段
 
 // 不出餐日：週六、週日自動排除；以下為「落在平日」的國定假日／補假（依人事行政總處 115、116 年辦公日曆表，已更新至 116 年底）
@@ -410,14 +410,14 @@ function updateCountdown(){
   if (!isServiceDay(n.ymd)) {
     st.className = 'status closed';
     $('st-title').textContent = '今日休息（週末／國定假日不出餐）';
-    $('st-sub').textContent = '下個出餐日 ' + nxt + '，當日 09:30 截單';
+    $('st-sub').textContent = '下個出餐日 ' + nxt + '，當日 10:00 截單';
     return;
   }
   const remain = (CUTOFF.h * 60 + CUTOFF.m) - (n.h * 60 + n.m);
   if (remain > 0) {
     const hh = Math.floor(remain / 60), mm = remain % 60;
     st.className = 'status open';
-    $('st-title').textContent = '今日接單中・09:30 截單';
+    $('st-title').textContent = '今日接單中・10:00 截單';
     $('st-sub').textContent = '距截單還有 ' + (hh ? hh + ' 小時 ' : '') + mm + ' 分｜' + DELIVERY + ' 送達大樓';
   } else {
     st.className = 'status closed';
