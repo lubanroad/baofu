@@ -136,6 +136,37 @@ footer{margin-top:auto;padding:40px 24px calc(32px + env(safe-area-inset-bottom)
 [hidden]{display:none!important}
 @media (max-width:360px){h1{font-size:34px}.bhero h1{font-size:30px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ===== 電腦版（900px 以上），手機版不受影響 ===== */
+@media (min-width:900px){
+  .wrap{max-width:1180px}
+  #view-list,#view-building{padding:0 48px 64px}
+  #view-list>.top,#view-building>.top{margin:0 -48px;padding:20px 48px}
+  #view-list{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:64px;align-items:start}
+  #view-list>.top{grid-column:1/-1}
+  .side{position:sticky;top:40px}
+  .hero{padding:80px 0 36px}
+  h1{font-size:52px}
+  .steps{margin:0}
+  .sec{padding:80px 0 0}
+  #list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px!important}
+  .bld{position:relative;flex-direction:column;align-items:flex-start;gap:14px;padding:22px;min-height:150px}
+  .bld .go{position:absolute;top:18px;right:18px}
+  .bld .info{padding-right:0}
+  .bhero{padding:64px 0 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);column-gap:56px;row-gap:12px;align-items:end}
+  .bhero>.status{grid-column:2;grid-row:1/4;margin-top:0;padding:20px 22px}
+  .bhero h1{font-size:52px}
+  .brands{padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  .brands h2{grid-column:1/-1}
+  .brand{display:flex;flex-direction:column}
+  .brand .head{padding:28px;flex-grow:1}
+  .brand img{width:104px;height:104px}
+  .brand h3{font-size:26px}
+  .brand .cta{margin:0 28px 28px}
+  .facts{margin:24px 0 0;grid-template-columns:repeat(4,minmax(0,1fr));padding:22px 28px}
+  footer{padding:36px 48px 40px}
+  .lines{max-width:560px}
+}
 </style>
 </head>
 <body>
@@ -152,6 +183,7 @@ footer{margin-top:auto;padding:40px 24px calc(32px + env(safe-area-inset-bottom)
       <span class="eyebrow">OFFICE LUNCH</span>
     </header>
 
+    <div class="side">
     <section class="hero">
       <div class="kicker"><i></i><span>知己知米私廚餐盒 × 李鴻記餐盒公司</span></div>
       <h1>今天中午，<br>在哪棟大樓用餐？</h1>
@@ -169,6 +201,7 @@ footer{margin-top:auto;padding:40px 24px calc(32px + env(safe-area-inset-bottom)
       <div class="step on"><b>STEP 1</b><span>選擇大樓</span></div>
       <div class="step"><b>STEP 2</b><span>選擇品牌訂餐</span></div>
     </nav>
+    </div>
 
     <section class="sec">
       <div class="sec-h"><h2>服務大樓</h2><span class="count" id="count"></span></div>
@@ -255,7 +288,7 @@ footer{margin-top:auto;padding:40px 24px calc(32px + env(safe-area-inset-bottom)
 const CUTOFF = { h: 9, m: 30 };            // 截單：當日 09:30（台北時間）
 const DELIVERY = '11:30–12:00';            // 送達時段
 
-// 不出餐日：週六、週日自動排除；以下為「落在平日」的國定假日／補假（依人事行政總處辦公日曆表）
+// 不出餐日：週六、週日自動排除；以下為「落在平日」的國定假日／補假（依人事行政總處 115、116 年辦公日曆表，已更新至 116 年底）
 // 每年底更新下一年；要臨時公休也加在這裡，格式 'YYYY-MM-DD'
 const HOLIDAYS = [
   // 2026（115年）
@@ -272,7 +305,9 @@ const HOLIDAYS = [
   '2027-09-15', // 中秋節
   '2027-09-28', // 教師節
   '2027-10-11', // 國慶日補假
-  '2027-10-25'  // 光復節
+  '2027-10-25', // 光復節
+  '2027-12-24', // 行憲紀念日補假
+  '2027-12-31'  // 117年元旦補假
 ];
 
 // status: 'live' 可訂；其他值（如 'soon'）顯示「即將開通」且不可點
